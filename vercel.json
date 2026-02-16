@@ -1,4 +1,5 @@
 {
+    "buildCommand": "npm run build --prefix apps/dashboard",
     "outputDirectory": "apps/dashboard/dist/browser",
     "rewrites": [
         {
