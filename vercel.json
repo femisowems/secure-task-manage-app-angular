@@ -1,9 +1,20 @@
 {
-    "outputDirectory": "dist/browser",
+    "outputDirectory": "apps/dashboard/dist/browser",
     "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/apps/api/api/index.ts"
+        },
         {
             "source": "/(.*)",
             "destination": "/index.html"
         }
-    ]
+    ],
+    "functions": {
+        "apps/api/api/index.ts": {
+            "runtime": "nodejs20.x",
+            "memory": 1024,
+            "maxDuration": 10
+        }
+    }
 }
