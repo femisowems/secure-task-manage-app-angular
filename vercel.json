@@ -1,5 +1,5 @@
 {
-    "outputDirectory": "dist/browser",
+    "outputDirectory": "apps/dashboard/dist/browser",
     "rewrites": [
         {
             "source": "/(.*)",
