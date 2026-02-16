@@ -20,9 +20,21 @@ async function bootstrap() {
         transform: true,
     }));
 
-    // Strict CORS
+    // Dynamic CORS configuration
+    const allowedOrigins = [
+        'http://localhost:5173',
+        'http://localhost:5174',
+        'http://localhost:3000',
+        'http://localhost:4200',
+        'https://secure-task-manage-app-angular-dash.vercel.app'
+    ];
+
+    if (process.env.CORS_ORIGIN) {
+        allowedOrigins.push(...process.env.CORS_ORIGIN.split(','));
+    }
+
     app.enableCors({
-        origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000', 'http://localhost:4200'],
+        origin: allowedOrigins,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     });
