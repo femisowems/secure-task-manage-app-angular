@@ -29,6 +29,21 @@ Ensure you have a [Supabase](https://supabase.com) project created.
 
 ### 2. Environment Configuration
 Create a `.env` file in the root directory:
+## Configuration
+
+### Environment Variables
+
+#### API (Railway)
+Ensure the following variables are set in your Railway project:
+- `DATABASE_URL`: Connection string for your database.
+- `SUPABASE_URL`: URL for your Supabase project.
+- `SUPABASE_KEY`: Service role key for Supabase.
+- `CORS_ORIGIN`: Comma-separated list of allowed origins (e.g., `https://your-vercel-app.vercel.app`).
+
+#### Dashboard (Vercel)
+The Angular dashboard needs to know where the API is hosted.
+1.  Update `apps/dashboard/src/environments/environment.ts` (or create `environment.prod.ts`).
+2.  Set `apiUrl` to your Railway deployment URL (e.g., `https://api-production.up.railway.app`).
 ```env
 # Supabase Configuration
 VITE_SUPABASE_URL=https://your-project.supabase.co
