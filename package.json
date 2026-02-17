@@ -2,17 +2,20 @@
   "name": "secure-task-manage-app-angular",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "workspaces": [
-    "apps/*"
-  ],
+  "version": "0.0.0",
   "scripts": {
-    "start:angular": "npm run start --prefix apps/dashboard",
-    "start:api": "tsx watch apps/api/src/main.ts",
-    "start:dashboard": "npm run start:angular",
-    "start:all": "concurrently \"npm run start:angular\" \"npm run start:api\"",
-    "build": "npm run build --prefix apps/dashboard && npm run build --prefix apps/api",
-    "lint": "eslint ."
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/src/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.13",

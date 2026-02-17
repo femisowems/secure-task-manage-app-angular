@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "ESNext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "target": "ESNext",
         "allowJs": true,
@@ -25,17 +25,15 @@
             ],
             "@secure-task-manage-app-angular/auth/*": [
                 "libs/auth/src/lib/*"
-            ],
-            "@secure-task-manage-app-angular/design-system": [
-                "libs/design-system/tokens.ts"
-            ],
-            "@secure-task-manage-app-angular/design-system/*": [
-                "libs/design-system/*"
             ]
         },
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
+    "include": [
+        "src/**/*",
+        "libs/**/*"
+    ],
     "exclude": [
         "node_modules",
         "dist"
