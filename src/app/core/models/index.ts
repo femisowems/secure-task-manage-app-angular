@@ -9,6 +9,7 @@ export interface User {
     email: string;
     role: UserRole;
     organizationId: string;
+    name?: string;
 }
 
 export enum TaskStatus {

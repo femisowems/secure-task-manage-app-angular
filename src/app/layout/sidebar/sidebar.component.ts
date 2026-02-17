@@ -33,6 +33,13 @@ import { LucideAngularModule } from 'lucide-angular';
             Audit Log
           </a>
         }
+
+        <a routerLink="/dashboard/settings" 
+           routerLinkActive="bg-indigo-50 text-indigo-700 font-bold"
+           class="flex items-center gap-grid-sm px-grid-md py-grid-sm rounded-md transition-colors text-text-secondary hover:bg-gray-50 hover:text-text-primary text-body-sm font-medium">
+          <lucide-icon name="settings" [size]="18"></lucide-icon>
+          Settings
+        </a>
       </nav>
 
       <div class="p-grid-md border-t border-border-subtle">

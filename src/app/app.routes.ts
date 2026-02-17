@@ -22,6 +22,12 @@ export const routes: Routes = [
                 path: 'audit',
                 loadComponent: () => import('./features/audit/audit-log-page/audit-log-page.component').then(m => m.AuditLogPageComponent),
                 canActivate: [roleGuard([UserRole.ADMIN, UserRole.OWNER])]
+            },
+            {
+                path: 'settings',
+                loadComponent: () => import('./features/settings/settings.page').then(m => m.SettingsPage),
+                canActivate: [roleGuard([UserRole.OWNER, UserRole.ADMIN, UserRole.VIEWER])],
+                data: { roles: [UserRole.OWNER, UserRole.ADMIN, UserRole.VIEWER] }
             }
         ]
     },

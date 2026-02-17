@@ -1,4 +1,4 @@
-import { Component, inject, signal, isDevMode, OnInit, effect } from '@angular/core';
+import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -12,9 +12,8 @@ import { SupabaseService } from '../../../core/services/supabase.service';
   template: `
     <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-4">
       <!-- Dev Credentials Panel -->
-      @if (isDev) {
         <div class="fixed bottom-4 right-4 max-w-xs bg-amber-50 border border-amber-200 rounded-lg p-grid-md shadow-lg text-xs z-50">
-          <h3 class="font-bold text-amber-800 mb-2 uppercase tracking-wider">Dev Credentials</h3>
+          <h3 class="font-bold text-amber-800 mb-2 uppercase tracking-wider">Login Test Credentials</h3>
           <div class="space-y-grid-sm text-left">
             <div>
               <span class="font-semibold block text-amber-900/70 mb-1">Admin (Owner):</span>
@@ -30,7 +29,6 @@ import { SupabaseService } from '../../../core/services/supabase.service';
             </div>
           </div>
         </div>
-      }
 
       <!-- Auth Card -->
       <div class="w-full max-w-md bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl p-grid-xl md:p-10 space-y-grid-lg">
@@ -91,7 +89,7 @@ export class LoginPageComponent implements OnInit {
   private authStore = inject(AuthStore);
   private supabase = inject(SupabaseService);
   private router = inject(Router);
-  protected isDev = isDevMode();
+
 
   constructor() {
     effect(() => {
