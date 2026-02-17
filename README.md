@@ -2,7 +2,7 @@
 
 A modern, secure task management dashboard built with Angular 19 and Tailwind CSS. This application serves as the frontend client, connecting to a NestJS backend API and using Supabase for authentication.
 
-![Dashboard Preview](/Users/femisowemimo/.gemini/antigravity/brain/192e4aa7-8865-4823-9680-71c14753cb53/dashboard_view_1771359903461.png)
+![Dashboard Preview](public/screenshots/dashboard-preview.png)
 
 ## Features
 
