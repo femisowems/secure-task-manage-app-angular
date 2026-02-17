@@ -1,7 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { AuthStore } from '../../core/services/auth.store';
+import { AuditService } from '../../core/services/audit.service';
+import { environment } from '../../../environments/environment';
 import { UserSettings, SettingsProfile, SettingsOrganization, SettingsSecurity, SettingsPreferences } from './settings.model';
 
 @Injectable({
@@ -9,6 +12,8 @@ import { UserSettings, SettingsProfile, SettingsOrganization, SettingsSecurity, 
 })
 export class SettingsService {
     private authStore = inject(AuthStore);
+    private auditService = inject(AuditService);
+    private http = inject(HttpClient);
 
     // Mock initial data for preferences and security (since not in User model)
     private security: SettingsSecurity = {
@@ -51,10 +56,17 @@ export class SettingsService {
     }
 
     updateProfile(profile: SettingsProfile): Observable<SettingsProfile> {
-        // In a real app, we'd call API to update profile if possible.
-        // For now, we just return the updated profile.
-        // We could also potentially update the AuthStore user signal locally if we wanted immediate reflection elsewhere.
-        return of(profile).pipe(delay(500));
+        // In a real app, call API
+        // this.http.put(`${environment.apiUrl}/users/profile`, profile).subscribe();
+
+        // Simulate API call success
+        return of(profile).pipe(
+            delay(500),
+            tap(updated => {
+                this.authStore.updateUser({ name: updated.name });
+                this.auditService.logAction('Update Profile', { name: updated.name });
+            })
+        );
     }
 
     updateOrganization(organization: SettingsOrganization): Observable<SettingsOrganization> {
@@ -63,11 +75,17 @@ export class SettingsService {
 
     updateSecurity(security: SettingsSecurity): Observable<SettingsSecurity> {
         this.security = security;
-        return of(security).pipe(delay(500));
+        return of(security).pipe(
+            delay(500),
+            tap(() => this.auditService.logAction('Update Security', { mfa: security.mfaEnabled, timeout: security.sessionTimeout }))
+        );
     }
 
     updatePreferences(preferences: SettingsPreferences): Observable<SettingsPreferences> {
         this.preferences = preferences;
-        return of(preferences).pipe(delay(500));
+        return of(preferences).pipe(
+            delay(500),
+            tap(() => this.auditService.logAction('Update Preferences', preferences))
+        );
     }
 }

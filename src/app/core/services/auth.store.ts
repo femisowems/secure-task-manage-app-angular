@@ -69,4 +69,11 @@ export class AuthStore {
         this._token.set(null);
         this.router.navigate(['/login']);
     }
+
+    updateUser(updates: Partial<User>) {
+        const currentUser = this._user();
+        if (currentUser) {
+            this._user.set({ ...currentUser, ...updates });
+        }
+    }
 }

@@ -27,4 +27,14 @@ export class AuditService {
             this._loading.set(false);
         }
     }
+
+    logAction(action: string, details: any) {
+        // Fire and forget, or handle error if needed
+        this.http.post(`${environment.apiUrl}/audit-log`, { action, details }).subscribe({
+            error: (err) => {
+                // If 404 (endpoint not exists) or other error, just log to console and don't break flow
+                console.warn('Failed to log audit action to backend:', err);
+            }
+        });
+    }
 }
