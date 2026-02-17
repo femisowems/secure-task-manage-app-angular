@@ -1,64 +1,55 @@
 {
-  "name": "secure-task-manage-app-angular",
-  "private": true,
+  "name": "dashboard",
   "version": "0.0.0",
   "type": "module",
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
-    "start:angular": "npm run start --prefix apps/dashboard",
-    "start:api": "tsx watch apps/api/src/main.ts",
-    "start:dashboard": "npm run start:angular",
-    "start:all": "concurrently \"npm run start:angular\" \"npm run start:api\"",
-    "build": "npm run build --prefix apps/dashboard && npm run build --prefix apps/api",
-    "lint": "eslint ."
+    "ng": "ng",
+    "prestart": "npx tailwindcss -i src/styles.tailwind.css -o src/styles.css --minify",
+    "start": "ng serve",
+    "prebuild": "npx tailwindcss -i src/styles.tailwind.css -o src/styles.css --minify",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@10.8.2",
   "dependencies": {
-    "@nestjs/common": "^11.1.13",
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.13",
-    "@nestjs/jwt": "^11.0.2",
-    "@nestjs/passport": "^11.0.5",
-    "@nestjs/platform-express": "^11.1.13",
-    "@nestjs/throttler": "^6.5.0",
-    "@nestjs/typeorm": "^11.0.0",
+    "@angular/cdk": "^19.1.0",
+    "@angular/common": "^19.1.0",
+    "@angular/compiler": "^19.1.0",
+    "@angular/core": "^19.1.0",
+    "@angular/forms": "^19.1.0",
+    "@angular/platform-browser": "^19.1.0",
+    "@angular/router": "^19.1.0",
     "@supabase/supabase-js": "^2.95.3",
-    "axios": "^1.13.5",
-    "bcrypt": "^6.0.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.3",
-    "clsx": "^2.1.1",
-    "dotenv": "^17.3.1",
-    "helmet": "^8.1.0",
-    "jwks-rsa": "^3.2.2",
-    "jwt-decode": "^4.0.0",
-    "passport": "^0.7.0",
-    "passport-jwt": "^4.0.1",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2",
-    "sqlite3": "^5.1.7",
-    "tailwind-merge": "^3.4.0",
-    "typeorm": "^0.3.28"
+    "@tailwindcss/postcss": "^4.1.18",
+    "autoprefixer": "^10.4.24",
+    "lucide-angular": "^0.564.0",
+    "postcss": "^8.5.6",
+    "rxjs": "~7.8.0",
+    "tailwindcss": "^4.0.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@nestjs/cli": "^11.0.0",
-    "@nestjs/schematics": "^11.0.0",
+    "@angular/build": "^19.1.0",
+    "@angular/cli": "^19.1.0",
+    "@angular/compiler-cli": "^19.1.0",
     "@tailwindcss/cli": "^4.1.18",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@types/bcrypt": "^6.0.0",
-    "@types/helmet": "^0.0.48",
-    "@types/node": "^24.10.1",
-    "@types/passport-jwt": "^4.0.1",
-    "autoprefixer": "^10.4.24",
-    "concurrently": "^9.2.1",
-    "eslint": "^9.39.1",
-    "globals": "^16.5.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
-    "tsx": "^4.21.0",
+    "jsdom": "^27.1.0",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.48.0"
+    "vitest": "^4.0.8"
   }
 }

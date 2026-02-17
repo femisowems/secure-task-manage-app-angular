@@ -1,81 +1,59 @@
-# Secure Task Management App Angular
+# Dashboard
 
-A premium, enterprise-grade **Secure Task Management Application** featuring a modern Angular frontend and a robust NestJS backend. This project demonstrates advanced security patterns, including Supabase JWT integration, hierarchical Role-Based Access Control (RBAC), and multi-tenant Organization Scoping.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
 
-## 🚀 Key Features
+## Development server
 
-- **Enterprise Security**: 
-  - **Supabase Auth Integration**: Secure token exchange using Supabase JWTs with ES256 signature validation via JWKS.
-  - **Hierarchical RBAC**: Granular permission system (`Owner` > `Admin` > `Viewer`).
-  - **Multi-Tenant Scoping**: Strict organization isolation with parent-child relationship support.
-  - **Compliance Logging**: Automated audit tracking for all sensitive operations (Create, Update, Delete).
-- **Modern Angular Frontend**:
-  - **Angular Dashboard**: Modern Angular 19+ app utilizing **Signals**, **Angular CDK (Kanban Board)**, and premium Tailwind v4 styling.
-- **Premium Design**:
-  - **Interactive Kanban**: Drag-and-drop task management with real-time status updates.
-  - **Aesthetics**: Glassmorphism UI with Lucide icons and Inter typography.
+To start a local development server, run:
 
-## 🔑 Test Credentials
-
-| Role | Email | Password | Access Level |
-| :--- | :--- | :--- | :--- |
-| **Owner** | `admin@test.com` | `password123` | Full system access & Audit logs |
-| **Viewer** | `user@test.com` | `password123` | Read-only access to specific org |
-
-## 🛠️ Setup & Installation
-
-### 1. Prerequisites
-Ensure you have a [Supabase](https://supabase.com) project created.
-
-### 2. Environment Configuration
-Create a `.env` file in the root directory:
-```env
-# Supabase Configuration
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-
-# Backend Configuration
-SUPABASE_URL=https://your-project.supabase.co
-PORT=3001
-VITE_API_URL=http://localhost:3001/api
-```
-
-### 3. Install Dependencies
 ```bash
-npm install
+ng serve
 ```
 
-### 4. Run Development Servers
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-| Command | Action | URL |
-| :--- | :--- | :--- |
-| `npm run start:angular` | Start Angular Dashboard | [http://localhost:4200](http://localhost:4200) |
-| `npm run start:api` | Start NestJS Backend | [http://localhost:3001/api](http://localhost:3001/api) |
-| `npm run start:all` | Start EVERYTHING | (All of the above) |
+## Code scaffolding
 
-## 🏗️ Architecture Detail
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-### Backend (NestJS)
-- **`SupabaseJwtStrategy`**: Validates incoming JWTs against Supabase's public keys (`ES256`).
-- **`RbacService`**: Centralized logic for role inheritance and permission checks.
-- **`OrgScopeService`**: Handles parent/child organization visibility logic.
-
-### Angular Dashboard (Modern)
-- **`Signals`**: state management for high-performance reactive updates.
-- **`CDK Drag & Drop`**: Interactive Kanban board for task management.
-- **`Tailwind v4`**: Automated CLI build for premium styling.
-
-## 📂 Project Structure
-
-```text
-├── apps/api/src/app/       # Backend (NestJS)
-├── apps/dashboard/         # Modern Angular Dashboard (v19)
-│   ├── src/app/core/       # Signals-based Stores & Interceptors
-│   └── src/app/features/   # Kanban Board & Audit Components
-├── libs/                   # Shared Business Logic (RBAC/Org Scoping)
-├── scripts/                # Database migration & utility scripts
-└── database.sqlite         # Local SQLite storage
+```bash
+ng generate component component-name
 ```
 
-## 📄 License
-MIT
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,43 +1,54 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-    "compilerOptions": {
-        "module": "ESNext",
-        "moduleResolution": "node",
-        "target": "ESNext",
-        "allowJs": true,
-        "resolveJsonModule": true,
-        "sourceMap": true,
-        "declaration": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "outDir": "dist",
-        "baseUrl": ".",
-        "paths": {
-            "@secure-task-manage-app-angular/data": [
-                "libs/data/src/lib/entities.ts"
-            ],
-            "@secure-task-manage-app-angular/data/*": [
-                "libs/data/src/lib/*"
-            ],
-            "@secure-task-manage-app-angular/auth": [
-                "libs/auth/src/lib/rbac.service.ts"
-            ],
-            "@secure-task-manage-app-angular/auth/*": [
-                "libs/auth/src/lib/*"
-            ],
-            "@secure-task-manage-app-angular/design-system": [
-                "libs/design-system/tokens.ts"
-            ],
-            "@secure-task-manage-app-angular/design-system/*": [
-                "libs/design-system/*"
-            ]
-        },
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@secure-task-manage-app-angular/data": [
+        "libs/data/src/lib/entities.ts"
+      ],
+      "@secure-task-manage-app-angular/data/*": [
+        "libs/data/src/lib/*"
+      ],
+      "@secure-task-manage-app-angular/auth": [
+        "libs/auth/src/lib/rbac.service.ts"
+      ],
+      "@secure-task-manage-app-angular/auth/*": [
+        "libs/auth/src/lib/*"
+      ],
+      "@secure-task-manage-app-angular/design-system": [
+        "libs/design-system/tokens.ts"
+      ],
+      "@secure-task-manage-app-angular/design-system/*": [
+        "libs/design-system/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
     },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }
