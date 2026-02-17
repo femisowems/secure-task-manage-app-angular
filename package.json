@@ -2,6 +2,7 @@
   "name": "secure-task-manage-app-angular",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "workspaces": [
     "apps/*"
   ],
@@ -9,7 +10,6 @@
     "start:angular": "npm run start --prefix apps/dashboard",
     "start:api": "tsx watch apps/api/src/main.ts",
     "start:dashboard": "npm run start:angular",
-    "start:prod": "node dist/apps/api/apps/api/src/main.js",
     "start:all": "concurrently \"npm run start:angular\" \"npm run start:api\"",
     "build": "npm run build --prefix apps/dashboard && npm run build --prefix apps/api",
     "lint": "eslint ."
