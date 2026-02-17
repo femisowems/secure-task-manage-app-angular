@@ -2,10 +2,16 @@
 
 A modern, secure task management dashboard built with Angular 19 and Tailwind CSS. This application serves as the frontend client, connecting to a NestJS backend API and using Supabase for authentication.
 
+![Dashboard Preview](/Users/femisowemimo/.gemini/antigravity/brain/192e4aa7-8865-4823-9680-71c14753cb53/dashboard_view_1771359903461.png)
+
 ## Features
 
 - **Secure Authentication**: integrated with Supabase.
-- **Task Management**: efficient task tracking and management.
+- **Task Management**: efficient task tracking with drag-and-drop Kanban board.
+- **Task Analytics**: Real-time bar chart visualization of task progress.
+- **Dark / Light Mode**: Full theme support with system synchronization.
+- **Keyboard Shortcuts**: Power user navigation (e.g., `N` for new task, `F` for search, `D` for theme toggle).
+- **Enhanced Audit Log**: Precise tracking of user actions and resource changes.
 - **Responsive Design**: built with Tailwind CSS v4 for a mobile-first experience.
 - **Modern Angular**: utilizes the latest Angular 19 features and standalone components.
 

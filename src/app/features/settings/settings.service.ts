@@ -48,23 +48,28 @@ export class SettingsService {
             organization: {
                 id: user.organizationId
             },
-            security: this.security,
-            preferences: this.preferences
+            security: {
+                mfaEnabled: user.mfaEnabled || false,
+                sessionTimeout: user.sessionTimeout || 30
+            },
+            preferences: user.preferences || {
+                theme: 'system',
+                defaultView: 'kanban',
+                itemsPerPage: 20
+            }
         };
 
         return of(settings).pipe(delay(500));
     }
 
     updateProfile(profile: SettingsProfile): Observable<SettingsProfile> {
-        // In a real app, call API
-        // this.http.put(`${environment.apiUrl}/users/profile`, profile).subscribe();
-
-        // Simulate API call success
-        return of(profile).pipe(
-            delay(500),
+        const user = this.authStore.user();
+        if (!user) return of(profile);
+        return this.http.put<SettingsProfile>(`${environment.apiUrl}/users/${user.id}`, { name: profile.name }).pipe(
             tap(updated => {
+                console.log('Profile Updated:', updated);
                 this.authStore.updateUser({ name: updated.name });
-                this.auditService.logAction('Update Profile', { name: updated.name });
+                this.auditService.logAction('Update Profile', { name: updated.name }, 'User', user.id);
             })
         );
     }
@@ -75,17 +80,30 @@ export class SettingsService {
 
     updateSecurity(security: SettingsSecurity): Observable<SettingsSecurity> {
         this.security = security;
-        return of(security).pipe(
-            delay(500),
-            tap(() => this.auditService.logAction('Update Security', { mfa: security.mfaEnabled, timeout: security.sessionTimeout }))
+        const user = this.authStore.user();
+        if (!user) return of(security);
+
+        return this.http.put<SettingsSecurity>(`${environment.apiUrl}/users/${user.id}`, {
+            mfaEnabled: security.mfaEnabled,
+            sessionTimeout: security.sessionTimeout
+        }).pipe(
+            tap(() => {
+                console.log('Security Updated:', security);
+                this.auditService.logAction('Update Security', { mfa: security.mfaEnabled, timeout: security.sessionTimeout }, 'User', user.id);
+            })
         );
     }
 
     updatePreferences(preferences: SettingsPreferences): Observable<SettingsPreferences> {
         this.preferences = preferences;
-        return of(preferences).pipe(
-            delay(500),
-            tap(() => this.auditService.logAction('Update Preferences', preferences))
+        const user = this.authStore.user();
+        if (!user) return of(preferences);
+
+        return this.http.put<SettingsPreferences>(`${environment.apiUrl}/users/${user.id}`, { preferences }).pipe(
+            tap(() => {
+                console.log('Preferences Updated:', preferences);
+                this.auditService.logAction('Update Preferences', preferences, 'User', user.id);
+            })
         );
     }
 }

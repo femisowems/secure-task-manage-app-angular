@@ -28,9 +28,15 @@ export class AuditService {
         }
     }
 
-    logAction(action: string, details: any) {
+    logAction(action: string, details: any, resourceType: string = 'UNKNOWN', resourceId?: string) {
         // Fire and forget, or handle error if needed
-        this.http.post(`${environment.apiUrl}/audit-log`, { action, details }).subscribe({
+        this.http.post(`${environment.apiUrl}/audit-log`, {
+            action,
+            details,
+            resourceType,
+            resourceId
+        }).subscribe({
+            next: () => console.log(`Audit Logged: ${action} on ${resourceType}`, details),
             error: (err) => {
                 // If 404 (endpoint not exists) or other error, just log to console and don't break flow
                 console.warn('Failed to log audit action to backend:', err);

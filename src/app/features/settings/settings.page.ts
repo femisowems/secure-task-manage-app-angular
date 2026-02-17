@@ -7,6 +7,7 @@ import { AuthStore } from '../../core/services/auth.store';
 import { UserRole } from '../../core/models';
 import { SettingsService } from './settings.service';
 import { UserSettings, SettingsTab, SettingsPreferences, SettingsProfile, SettingsOrganization } from './settings.model';
+import { ThemeService, Theme } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -250,6 +251,7 @@ export class SettingsPage implements OnInit {
   private fb = inject(FormBuilder);
   private settingsService = inject(SettingsService);
   private authStore = inject(AuthStore);
+  private themeService = inject(ThemeService);
 
   // State Signals
   activeTab = signal<SettingsTab>('profile');
@@ -385,8 +387,10 @@ export class SettingsPage implements OnInit {
   savePreferences() {
     if (this.preferencesForm.invalid) return;
     this.isSaving.set(true);
-    this.settingsService.updatePreferences(this.preferencesForm.getRawValue()).subscribe({
+    const prefs = this.preferencesForm.getRawValue() as SettingsPreferences;
+    this.settingsService.updatePreferences(prefs).subscribe({
       next: () => {
+        this.themeService.setTheme(prefs.theme as Theme);
         this.preferencesForm.markAsPristine();
         this.isSaving.set(false);
         this.isPreferencesSaved.set(true);

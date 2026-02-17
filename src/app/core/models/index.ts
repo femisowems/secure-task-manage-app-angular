@@ -10,19 +10,22 @@ export interface User {
     role: UserRole;
     organizationId: string;
     name?: string;
+    mfaEnabled?: boolean;
+    sessionTimeout?: number;
+    preferences?: any;
 }
 
 export enum TaskStatus {
-    TODO = 'To Do',
-    IN_PROGRESS = 'In Progress',
-    COMPLETED = 'Completed',
+    TODO = 'todo',
+    IN_PROGRESS = 'in-progress',
+    COMPLETED = 'completed',
 }
 
 export enum TaskCategory {
-    WORK = 'Work',
-    PERSONAL = 'Personal',
-    SHOPPING = 'Shopping',
-    OTHER = 'Other',
+    WORK = 'work',
+    PERSONAL = 'personal',
+    SHOPPING = 'shopping',
+    OTHER = 'other',
 }
 
 export enum TaskPriority {
