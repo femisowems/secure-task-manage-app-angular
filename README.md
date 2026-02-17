@@ -1,59 +1,88 @@
-# Dashboard
+# Secure Task Management App - Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+A modern, secure task management dashboard built with Angular 19 and Tailwind CSS. This application serves as the frontend client, connecting to a NestJS backend API and using Supabase for authentication.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Secure Authentication**: integrated with Supabase.
+- **Task Management**: efficient task tracking and management.
+- **Responsive Design**: built with Tailwind CSS v4 for a mobile-first experience.
+- **Modern Angular**: utilizes the latest Angular 19 features and standalone components.
+
+## Prerequisites
+
+- **Node.js**: v18 or higher recommended.
+- **npm**: v10 or higher.
+- **Angular CLI**: (Optional) `npm install -g @angular/cli`
+
+## Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd secure-task-manage-app-angular
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+## Configuration
+
+This project uses Angular environment files for configuration.
+
+1.  **Environment Variables:**
+    Copy the `.env.example` file to `.env` for reference on required keys:
+    ```bash
+    cp .env.example .env
+    ```
+
+2.  **Update Environment Files:**
+    Update `src/environments/environment.ts` (for development) and `src/environments/environment.prod.ts` (for production) with your specific configuration values.
+
+    **Required settings:**
+    - `supabaseUrl`: Your Supabase project URL.
+    - `supabaseKey`: Your Supabase anon public key.
+    - `apiUrl`: URL of the backend API (e.g., `https://secure-task-manage-backend-api.onrender.com` or local).
+
+## Running the Application
+
+To start the local development server:
 
 ```bash
-ng serve
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+This command will:
+1.  Compile Tailwind CSS styles.
+2.  Start the Angular development server on `http://localhost:4200/`.
 
-## Code scaffolding
+## Building for Production
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To build the project for production:
 
 ```bash
-ng generate component component-name
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The build artifacts will be stored in the `dist/` directory.
 
+## Running Tests
+
+**Unit Tests:**
 ```bash
-ng generate --help
+npm test
 ```
 
-## Building
+## Tech Stack
 
-To build the project run:
+- **Frontend Framework**: [Angular 19](https://angular.io/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Authentication**: [Supabase](https://supabase.com/)
+- **Icons**: [Lucide Angular](https://lucide.dev/)
+- **Package Manager**: npm
 
-```bash
-ng build
-```
+## License
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is licensed under the MIT License.
