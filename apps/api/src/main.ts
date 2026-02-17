@@ -27,7 +27,8 @@ async function bootstrap() {
         'http://localhost:3000',
         'http://localhost:4200',
         'https://secure-task-manage-app-angular-dash.vercel.app',
-        'https://secure-task-manage-backend-api-production.up.railway.app/api',
+        'https://secure-task-manage-backend-api-production.up.railway.app',
+        'https://secure-task-manage-app-angular-dashboard-14ip2stm4.vercel.app',
         /\.vercel\.app$/
     ];
 
